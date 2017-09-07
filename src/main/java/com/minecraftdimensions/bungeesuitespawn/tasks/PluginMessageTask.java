@@ -1,8 +1,12 @@
 package com.minecraftdimensions.bungeesuitespawn.tasks;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.minecraftdimensions.bungeesuitespawn.utils.OptionalUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import com.minecraftdimensions.bungeesuitespawn.BungeeSuiteSpawn;
 
@@ -16,11 +20,17 @@ public class PluginMessageTask extends BukkitRunnable {
 	}
 	
 	public void run() {
-			Bukkit.getOnlinePlayers()[0].sendPluginMessage(
+			getOnlinePlayers().get(0).sendPluginMessage(
 					BungeeSuiteSpawn.INSTANCE,
 					BungeeSuiteSpawn.OUTGOING_PLUGIN_CHANNEL,
 					bytes.toByteArray());
 	
 	}
-
+	public static List<Player> getOnlinePlayers() {
+		return new OptionalUtils<>(() -> {
+			List<Player> onlinePlayers = new ArrayList<>();
+			Bukkit.getWorlds().forEach(world -> onlinePlayers.addAll(world.getPlayers()));
+			return onlinePlayers;
+		}).getOptional().orElseGet(ArrayList::new);
+	}
 }
