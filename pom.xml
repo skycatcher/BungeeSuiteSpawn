@@ -14,31 +14,27 @@
 
     <repositories>
         <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
+            <id>spigotmc-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
             <id>vault-repo</id>
             <url>http://ci.herocraftonline.com/plugin/repository/everything</url>
         </repository>
-        <repository>
-            <id>md-5</id>
-            <url>
-                http://ci.md-5.net/job/BungeeSuiteTeleports/com.minecraftdimensions.bungeesuiteteleports$BungeeSuiteTeleports/lastBuild/artifact/
-            </url>
-        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.6.2-R0.1-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.minecraftdimensions.bungeesuiteteleports</groupId>
             <artifactId>BungeeSuiteTeleports</artifactId>
             <version>0.50</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/BungeeSuiteTeleports-0.50.jar</systemPath>
         </dependency>
     </dependencies>
     <build>
